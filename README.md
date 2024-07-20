@@ -35,7 +35,7 @@ En Java, los `ServletContextListener`, `ServletRequestListener`, y `HttpSessionL
 
 `HttpSessionListener` se utiliza para recibir notificaciones sobre los cambios en las sesiones HTTP (`HttpSession`). Los eventos relevantes son la creación y destrucción de las sesiones.
 
-<Métodos Clave</h3>
+<h3>Métodos Clave</h3>
 
 - `sessionCreated`(HttpSessionEvent se): Se llama cuando se crea una nueva sesión HTTP.
 - `sessionDestroyed`(HttpSessionEvent se): Se llama cuando una sesión HTTP se invalida o expira.
