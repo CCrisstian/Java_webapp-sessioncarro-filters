@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet {
         if (usernameOptional.isPresent()) {
             resp.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = resp.getWriter()) {
-
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("    <head>");
