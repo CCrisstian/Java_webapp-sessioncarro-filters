@@ -22,10 +22,13 @@ public class ProductoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductoService service = new ProductoServiceImpl();
-        List<Producto> productos = service.listar();
+        List<Producto> productos = service.listar();    /*Obtiene una lista con los Productos*/
 
         LoginService auth = new LoginServiceSessionImpl();
-        Optional<String> usernameOptional = auth.getUsername(req);
+        Optional<String> usernameOptional = auth.getUsername(req);  /*Obtiene en nombre de Usuario*/
+
+        String mensajeRequest = (String) req.getAttribute("mensaje");
+        String mensajeApp = (String) getServletContext().getAttribute("mensaje");
 
         resp.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = resp.getWriter()) {
@@ -66,6 +69,8 @@ public class ProductoServlet extends HttpServlet {
                 out.println("</tr>");
             });
             out.println("</table>");
+            out.println("<p>"+mensajeApp+"</p>");
+            out.println("<p>"+mensajeRequest+"</p>");
             out.println("    </body>");
             out.println("</html>");
         }
