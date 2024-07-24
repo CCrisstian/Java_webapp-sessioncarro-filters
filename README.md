@@ -1,41 +1,22 @@
-<h1 align="center">Listeners</h1>
+<h1 align="center">Filters</h1>
 
-En Java, los `Listeners` son interfaces que permiten capturar y manejar eventos, como clics de botones, movimientos del ratón, pulsaciones de teclas, etc. Los Listeners son una parte fundamental del modelo de eventos de Java, especialmente en la programación de interfaces gráficas de usuario (GUI) con AWT (Abstract Window Toolkit) y Swing.
+En Java, los `Filters` (filtros) son componentes que se utilizan para realizar operaciones comunes en solicitudes y respuestas HTTP antes o después de que se procesen por un servlet. Los filtros se definen en el contexto de aplicaciones web Java (Servlets y JSP) y forman parte del API de Servlets.
+Los filtros permiten realizar tareas como:
+- La autenticación
+- El registro de actividades
+- La compresión de datos
+- La modificación de solicitudes y respuestas.
 
-<h2>Modelo de Eventos de Java</h2>
+<h3>Características de los Filters</h3>
 
-- <b>Fuente de Eventos (Event Source)</b>: Es el objeto que genera el evento. Por ejemplo, un botón que es presionado.
-- <b>Evento</b> (`Event Object`): Es un objeto que contiene información sobre el evento. Por ejemplo, un objeto ActionEvent para un clic de botón.
-- <b>Listener</b>: Es una interfaz que define uno o más métodos que reciben eventos y los procesan. Por ejemplo, ActionListener para manejar clics de botones.
-- <b>Registro del Listener</b>: Es el proceso de asociar un `Listener` con una fuente de eventos para que la fuente pueda notificar al `Listener` cuando ocurra un evento.
+- <b>Intercepción de Solicitudes y Respuestas</b>: Los filtros interceptan las solicitudes HTTP antes de que lleguen a los servlets y las respuestas HTTP antes de que se envíen al cliente.
+- <b>Encadenamiento</b>: Varios filtros pueden estar encadenados juntos. Cada filtro puede pasar la solicitud y la respuesta al siguiente filtro en la cadena o al servlet.
+- <b>Reutilización de Código</b>: Los filtros permiten la reutilización de código común, como la autenticación, en diferentes servlets sin necesidad de duplicar el código.
+- <b>Configuración en</b> `web.xml`: Los filtros se configuran en el archivo `web.xml` de la aplicación web o mediante anotaciones en la clase del filtro.
 
-<h1 align="center">ServletContextListener, ServletRequestListener, y HttpSessionListener</h1>
+<h3>Ejemplos de Uso de Filters</h3>
 
-En Java, los `ServletContextListener`, `ServletRequestListener`, y `HttpSessionListener` son interfaces de escucha (`listeners`) que permiten a los desarrolladores de aplicaciones web realizar acciones en momentos específicos del ciclo de vida de un servlet, petición o sesión HTTP. Estas interfaces forman parte de la especificación de Java Servlet y se utilizan comúnmente en aplicaciones web para inicializar recursos, realizar limpieza, o gestionar el estado de la aplicación.
-
-<h2>ServletContextListener</h2>
-
-`ServletContextListener` se utiliza para recibir notificaciones sobre los cambios en el contexto del servlet (`ServletContext`). Los eventos relevantes son la creación y destrucción del contexto del servlet, que típicamente corresponden al inicio y apagado de la aplicación web.
-
-<h3>Métodos Clave</h3>
-
-- `contextInitialized`(ServletContextEvent sce): Se llama cuando se <b>inicializa</b> el `ServletContext`. Es el lugar adecuado para configurar recursos compartidos como conexiones a bases de datos, hilos de fondo, etc.
-- `contextDestroyed`(ServletContextEvent sce): Se llama cuando se <b>destruye</b> el `ServletContext`. Es el lugar adecuado para liberar recursos compartidos.
-
-<h2>ServletRequestListener</h2>
-
-`ServletRequestListener` se utiliza para recibir notificaciones sobre los cambios en las peticiones (`ServletRequest`). Los eventos relevantes son la creación y destrucción de las peticiones.
-
-<h3>Métodos Clave</h3>
-
-- `requestInitialized`(ServletRequestEvent sre): Se llama cuando se crea una nueva petición.
-- `requestDestroyed`(ServletRequestEvent sre): Se llama cuando se destruye una petición.
-
-<h2>HttpSessionListener</h2>
-
-`HttpSessionListener` se utiliza para recibir notificaciones sobre los cambios en las sesiones HTTP (`HttpSession`). Los eventos relevantes son la creación y destrucción de las sesiones.
-
-<h3>Métodos Clave</h3>
-
-- `sessionCreated`(HttpSessionEvent se): Se llama cuando se crea una nueva sesión HTTP.
-- `sessionDestroyed`(HttpSessionEvent se): Se llama cuando una sesión HTTP se invalida o expira.
+- <b>Autenticación</b>: Verificar si un usuario está autenticado antes de permitirle acceder a ciertos recursos.
+- <b>Registro de Actividades</b>: Registrar todas las solicitudes y respuestas para análisis posterior.
+- <b>Compresión de Contenido</b>: Comprimir las respuestas HTTP para reducir el tiempo de carga.
+- <b>Conversión de Datos</b>: Convertir datos en la solicitud o respuesta, como cambiar el formato de la fecha.
